@@ -27,6 +27,8 @@ config status
 
 # Install all files (ATTENTION, 
 config checkout .
+#OR
+config reset --hard
 
 # Install submodules
 config submodule update --init
