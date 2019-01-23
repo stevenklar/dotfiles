@@ -1,0 +1,33 @@
+# Applications
+alias v="nvim"
+#alias v="code"
+alias vim="nvim"
+alias k="kubectl"
+alias h="helm"
+alias c="clear"
+
+# Configurations
+alias zshrc="nvim ~/.zshrc"
+alias ohmyzsh="nvim ~/.oh-my-zsh"
+alias dot="nvim ~/dotfiles"
+alias config="nvim ~/.config"
+
+# little day helper
+alias copy="xsel -i -b"
+alias x="exit"
+
+# task
+alias t="clear && task"
+alias ti="clear && task project:inbox"
+alias tw="clear && task +work"
+
+# Docker
+alias dc="docker-compose"
+alias dm="docker-machine"
+alias dst="docker stack"
+alias dse="docker service"
+alias dcl="docker container ls"
+# de -u (switch back to local machine)
+alias de='_docker_env() { eval $(docker-machine env $1) ;}; _docker_env'
+
+alias config='/usr/bin/git --git-dir=$HOME/.store/ --work-tree=$HOME'

@@ -1,0 +1,29 @@
+# oh my zsh path
+
+# load own bash stuff
+[[ -f "~/.secret" ]] && source "~/.secret"
+source $HOME/dotfiles/zsh/exports
+source $HOME/dotfiles/zsh/aliases
+
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="af-magic"
+
+# plugins
+plugins=(git docker tig bash-completion zsh-completion)
+
+# load oh-my-zsh
+source $HOME/.oh-my-zsh/oh-my-zsh.sh
+
+# load auto completions
+source <(kubectl completion zsh)
+source <(helm completion zsh)
+source <(kompose completion zsh)
+source $HOME/dotfiles/zsh/tmuxinator.zsh
+
+# Makefile completion
+zstyle ':completion:*:make:*:targets' call-command true
+zstyle ':completion:*:make::' tag-order targets
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format '%B%d%b'
+#zstyle ':completion:*' group-name ''
+#zstyle ':completion:*:descriptions' format '%B%d%b'
