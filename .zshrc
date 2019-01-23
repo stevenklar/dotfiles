@@ -1,7 +1,7 @@
 source $HOME/dotfiles/zsh/rc
-source $HOME/Code/dockerfiles/generated_bin
+source 
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f $HOME/Code/dockerfiles/generated_bin ] && source $HOME/Code/dockerfiles/generated_bin
+[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
-# export PATH=$PATH:$HOME/.linkerd2/bin
 setxkbmap -layout 'de,us'
