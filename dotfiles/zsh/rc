@@ -16,7 +16,7 @@ plugins=(git docker tig bash-completion zsh-completion)
 
 # load oh-my-zsh
 include $HOME/.oh-my-zsh/oh-my-zsh.sh
-[ -f "$(which tmux)" ] && include $HOME/dotfiles/zsh/tmuxinator.zsh
+[ -f "$(which tmuxinator)" ] && include $HOME/dotfiles/zsh/tmuxinator.zsh
 
 # load auto completions
 [ -f "$(which kubectl)" ] && source <(kubectl completion zsh)
