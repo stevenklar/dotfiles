@@ -1,7 +1,12 @@
-# Applications
-alias v="nvim"
-#alias v="code"
-alias vim="nvim"
+# Editor
+v() {
+    if hash nvim 2>/dev/null; then
+        nvim "$@"
+    else
+        vim "$@"
+    fi
+}
+
 alias k="kubectl"
 alias h="helm"
 alias c="clear"

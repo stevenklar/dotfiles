@@ -16,12 +16,12 @@ plugins=(git docker tig bash-completion zsh-completion)
 
 # load oh-my-zsh
 include $HOME/.oh-my-zsh/oh-my-zsh.sh
+include $HOME/dotfiles/zsh/tmuxinator.zsh
 
 # load auto completions
-include <(kubectl completion zsh)
-include <(helm completion zsh)
-include <(kompose completion zsh)
-include $HOME/dotfiles/zsh/tmuxinator.zsh
+[ -f "$(which kubectl)" ] && source <(kubectl completion zsh)
+#[ -f "$(which helm)" ] && source <(helm completion zsh)
+[ -f "$(which kompose)" ] && source <(kompose completion zsh)
 
 # Makefile completion
 zstyle ':completion:*:make:*:targets' call-command true
