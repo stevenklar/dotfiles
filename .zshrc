@@ -15,6 +15,7 @@ export LANG=de_DE.UTF-8
 export SSH_KEY_PATH="~/.ssh/id_rsa"
 export EDITOR='nvim'
 export ZSH=$HOME/.oh-my-zsh
+export ZSH_CACHE_DIR=/tmp
 
 # override path
 export PATH=$PATH:~/.composer/vendor/bin
