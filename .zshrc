@@ -5,6 +5,7 @@ include () {
 
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="af-magic"
+[[ -f "$HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme" ]] && ZSH_THEME="spaceship"
 
 # load own bash stuff
 include $HOME/.secret
