@@ -1,0 +1,220 @@
+# Windows mod key
+set $mod Mod4
+set $editor nvim
+
+new_window pixel 1
+new_float pixel 1
+
+gaps inner 5
+gaps outer 5
+
+smart_gaps on
+smart_borders on
+
+# Font for window titles. Will also be used by the bar unless a different font
+#font pango:Ubuntu Mono Regular 10
+font pango:SanFranciscoText-Regular 12
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+#bindsym $mod+Return exec terminology -B -2 -e ranger
+#bindsym $mod+Return exec gnome-terminal --full-screen -e ranger
+#bindsym $mod+Shift+Return exec gnome-terminal --zoom=1.2 -e ranger
+#bindsym $mod+Return exec terminology -B -2
+
+# open new terminal and attach to default tmux session
+#bindsym $mod+Return exec alacritty -e tmux new-session -A -s home
+bindsym $mod+Return exec alacritty -e tmuxinator start home
+#bindsym $mod+Return exec alacritty -e tmux new-session -A -s home
+bindsym $mod+Shift+Return exec alacritty
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# change focus
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+h focus left
+
+# move focused window
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+h move left
+
+# split focus
+bindsym $mod+v split h
+bindsym $mod+c split v
+
+# enter fullscreen mode for the focused container
+bindsym Hyper_L fullscreen
+bindsym $mod+f fullscreen
+bindsym $mod+g fullscreen global
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+#bindsym $mod+space focus mode_toggle
+
+# scratchpad
+bindsym $mod+shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+set $ws1  "1:  "
+set $ws2  "2:  "
+set $ws3  "3:  "
+set $ws4  "4:  "
+set $ws5  "5:  "
+set $ws6  "6:  "
+set $ws7  "7:  "
+set $ws8  "8:  "
+set $ws9  "9:  "
+set $ws10 "10:  "
+
+set $primary "eDP1"
+set $secondary "DVI-I-1-1"
+set $third "DVI-I-2-2"
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+bindsym $mod+Tab exec --no-startup-id rofi -show window
+bindsym $mod+space exec --no-startup-id rofi -show run
+bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+shift+d exec --no-startup-id rofi -modi lpass:rofi-lpass -show lpass
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym h resize shrink width 1 px or 1 ppt
+        bindsym k resize grow height 1 px or 1 ppt
+        bindsym j resize shrink height 1 px or 1 ppt
+        bindsym l resize grow width 1 px or 1 ppt
+
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+#bar {
+#    font pango:Hack 12
+#    position top
+#    tray_output none
+#    colors {
+#        background #404040
+#        statusline #ffffff
+#    }
+#    status_command ~/Code/bumblebee-status/bumblebee-status \
+#        -m layout weather spacer nic spacer disk:root spacer cpu memory spacer brightness pasink battery spacer date time \
+#        -p \
+#            nic.exclude="br-,vet,docker,lo,vboxnet,veth,virbr" \
+#            memory.format="{percent:05.2f}%" \
+#            disk.format="{percent:05.2f}%" \
+#            root.path=/ \
+#            time.format=" %H:%M  (KW %V)" \
+#            date.format="%a, %d.%m.%Y" \
+#            weather.location="Potsdam, DE" \
+#        -t solarized-own
+#}
+
+## My own shit
+# Background Image
+exec --no-startup-id "feh --bg-scale /home/skdo/Bilder/backgrounds"
+exec --no-startup-id compton -b
+
+# Multiple Display setup at Work
+set $mode_xrandr xrandr
+bindsym $mod+shift+w mode "$mode_xrandr"
+mode "$mode_xrandr" {
+    bindsym 1 mode "default", exec --no-startup-id "xrandr --output eDP1 --mode 1600x900 --auto --primary --output DP1 --off --output DVI-I-1-1 --off --output DVI-I-2-2 --off"
+    bindsym 2 mode "default", exec --no-startup-id "xrandr --output DVI-I-1-1 --primary --auto --mode 1920x1080 --output eDP1 --auto --right-of DVI-I-1-1 --mode 1920x1080 --output DVI-I-2-2 --auto --right-of eDP1 --mode 1920x1080"
+#    bindsym 2 mode "default", exec --no-startup-id "xrandr --output eDP1 --primary --mode '1280x720' --auto --left-of DVI-I-1-1"
+    bindsym 3 mode "default", exec --no-startup-id "xrandr --output eDP1 --mode 1600x900 --auto --primary --output DVI-I-1-1 --auto --right-of eDP1 --output DVI-I-2-2 --auto --right-of DVI-I-1-1"
+    bindsym 0 mode "default", exec --no-startup-id "feh --bg-scale /home/skdo/Bilder/backgrounds"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Three displays
+# exec --no-startup-id "xrandr | grep 'DVI-I-1-1 connected' && xrandr --output eDP1 --auto --primary --output DVI-I-1-1 --auto --right-of eDP1 --output DVI-I-2-2 --auto --right-of DVI-I-1-1"
+
+# And also only if there is a single one...
+exec --no-startup-id "xrandr --output eDP1 --mode 1600x900 --auto --primary --output DVI-I-1-1 --off --output DVI-I-2-2 --off"
+
+# Keyboard layout configuration
+exec --no-startup-id "setxkbmap -layout 'us,de'"
+
+# Custom Bindings
+bindsym Ctrl+Mod1+l exec "sh /home/skdo/.dotfiles/scripts/i3lock.sh"
+bindsym $mod+KP_Enter exec --no-startup-id gnome-calculator
+#bindsym Print exec --no-startup-id "scrot -z '%y%m%d%H%m%S.png' -e 'mv $f ~/Bilder/scrots/'"
+bindsym Print exec --no-startup-id "gnome-screenshot -a"
+
+# fn, audio stuff
+bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+
+bindsym XF86AudioLowerVolume exec amixer sset Master 5%-
+#bindsym XF86AudioMute exec amixer sset Master toggle
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86Search exec "synclient TouchpadOff=$(synclient -l | awk '/TouchpadOff/{print !strtonum($3)}')"
+
+# Auto assign stuff
+# assign [class="Wavebox"] $ws1
+assign [class="alacritty"] $ws1
+assign [class="chrome"] $ws2
+assign [class="slack"] $ws3
+
+# Auto start stuff
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id "tmuxinator list | sed -n '2p' | xargs tmuxinator start"
+#exec --no-startup-id "slack"
+exec --no-startup-id "google-chrome"
+exec --no-startup-id "alacritty -e tmuxinator start home"
+
+# workspace definition to output
+workspace $ws1 output $primary
+workspace $ws2 output $secondary
+workspace $ws3 output $third
+
